@@ -12,7 +12,7 @@ npm run dev      # local dev
 npm run build    # production build
 ```
 
-## Drop in YOUR assets (no code changes needed)
+## Drop in YOUR assets 
 
 | File | What it does |
 |---|---|
@@ -24,7 +24,7 @@ npm run build    # production build
 | `public/assets/images/services/…`, `products/…`, `about/…`, `icons/…` | Reserved folders for future assets. |
 
 The startup intro plays on every fresh page load; every in-site navigation shows a
-short ASTERIN logo loader (red/black curtain) instead.
+short ASTER(change it however suits you).
 
 ## Add content (data-driven, edit one file)
 
@@ -40,9 +40,7 @@ short ASTERIN logo loader (red/black curtain) instead.
 `/products/servers` · `/products/:slug` · `/about` · `/help` · `/contact`
 
 ## Notes
+- **while making this i took my inspiration from sylo media https://www.sylomedia.co.uk**
+  
 
-- Current imagery is AI-generated **placeholder** content — replace via the folders above.
-- Prices in `pricing.js` are placeholders — edit there only.
-- Custom cursor (VIEW / EXPLORE / BUY labels) is desktop-only; hover menus become
-  tap-friendly via the full-screen MENU on touch devices.
-- `prefers-reduced-motion` is respected everywhere.
+
