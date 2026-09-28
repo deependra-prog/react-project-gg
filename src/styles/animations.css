@@ -1,0 +1,166 @@
+/* ============================================================
+   ASTERIN — ANIMATIONS
+   Keyframes + scroll reveal system
+   ============================================================ */
+
+/* ---------- keyframes ---------- */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoIn {
+  0% { opacity: 0; transform: scale(0.72); filter: blur(12px) drop-shadow(0 4px 16px rgba(0, 0, 0, 0.95)); }
+  60% { opacity: 1; transform: scale(1.02); filter: blur(0) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95)); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95)); }
+}
+
+/* Metallic specular light sweep across red star */
+@keyframes starShineSweep {
+  0% {
+    transform: translateX(-140%) skewX(-25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(280%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+/* Refined red ruby glint at star center (unexaggerated, elegant) */
+@keyframes starRubyGlint {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.55;
+    filter: drop-shadow(0 0 3px rgba(255, 32, 56, 0.6));
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(255, 50, 75, 0.85));
+  }
+}
+
+@keyframes metallicSheenGlide {
+  0% {
+    background-position: 180% 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.85;
+  }
+  100% {
+    background-position: -80% 0;
+    opacity: 0;
+  }
+}
+
+@keyframes starBevelPulse {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+@keyframes barFill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes introExit {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-101%); }
+}
+
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.75; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--red); }
+  50% { opacity: 0.4; box-shadow: 0 0 4px var(--red); }
+}
+
+@keyframes cueDrop {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 0 64px, 64px 0; }
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4%, -5%) scale(1.12); }
+}
+
+@keyframes heroLogoIn {
+  from { opacity: 0; transform: translateY(26px) scale(0.96); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0) drop-shadow(0 0 34px rgba(255, 32, 56, 0.22)); }
+}
+
+/* ---------- scroll reveal system ---------- */
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    clip-path 1s cubic-bezier(0.65, 0, 0.2, 1),
+    filter 0.9s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-up { transform: translateY(36px); }
+.reveal-left { transform: translateX(-44px); }
+.reveal-right { transform: translateX(44px); }
+.reveal-scale { transform: scale(0.94); filter: blur(4px); }
+.reveal-clip { clip-path: inset(0 0 100% 0); transform: translateY(16px); }
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0% 0);
+  filter: blur(0);
+}
+
+@keyframes fluidMorph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(180deg) scale(1.06);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; clip-path: none; filter: none; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
